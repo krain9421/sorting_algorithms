@@ -1,5 +1,6 @@
 #include "sort.h"
 #include <stdio.h>
+#include <stdbool.h>
 
 /**
  * swap - functions that swaps two array values
@@ -27,21 +28,30 @@ void swap(int *xp, int *yp)
 
 void bubble_sort(int *array, size_t size)
 {
-	unsigned int i, j;
+	unsigned int i;
+	bool swapped;
+	bool isswap = true;
 
-	i = 0, j = 0;
+	i = 0;
 	if (size >= 2)
 	{
-		for (; i < size - 1; i++)
+		while (isswap == true)
 		{
-			for (; j < size - i - 1; j++)
+			i = 0;
+			swapped = false;
+			for (; i < size - 1; i++)
 			{
-				if (array[j] > array[j + 1])
+				if (array[i] > array[i + 1])
 				{
-					swap(&array[j], &array[j + 1]);
+					swapped = true;
+					swap(&array[i], &array[i + 1]);
 					print_array(array, size);
 				}
 			}
+			if (swapped == true)
+				isswap = true;
+			else
+				isswap = false;
 		}
 	}
 }
